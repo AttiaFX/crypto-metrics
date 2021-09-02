@@ -1,6 +1,7 @@
 # Digital Asset Signal Service (DASS)
 
 ## Description
+This application 
 
 
 ## Inputs
@@ -8,7 +9,7 @@
 * Moving Average period setting (200 SMA by default)
 * email address of signal recipient
 
-## Pairs
+## Digital Asset Pairs
 1. BTC/USD
 1. ETH/USD
 1. ADA/USD
