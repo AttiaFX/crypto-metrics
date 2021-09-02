@@ -1,8 +1,8 @@
 # Digital Asset Signal Service (DASS)
 
 ## Description
-This application 
-
+This application is a relative strength comparison tool for financial assets. 
+DASS helps to quickly identify the best opporunities for profit potential!
 
 ## Inputs
 * Time Frame setting (1h by default)
