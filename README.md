@@ -1,3 +1,4 @@
+![big-data-risk-management-in-financial-markets](https://user-images.githubusercontent.com/47541895/131925749-3a8e2089-655c-47cb-bf49-cdb13865da0a.jpeg)
 # Digital Asset Signal Service (DASS)
 
 ## Description
