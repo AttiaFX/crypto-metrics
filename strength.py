@@ -1,4 +1,7 @@
 import yfinance 
+import time
+import yagmail
+
 
 usd_score = 0
 btc_score = 0
@@ -7,6 +10,9 @@ ada_score = 0
 
 time_frame = '1h'
 moving_average_value = 200
+alert_recipient = "20086638@mail.wit.ie"
+
+
 
 def is_stronger(pair):
     # True if the first currency is stronger than the second one
@@ -21,7 +27,18 @@ def is_stronger(pair):
     return is_stronger
 
 if __name__ == "__main__":
-    print("Ranking the top cypto currencies ...")
+    print("Digital Asset Signal Service (DASS)")
+    print("Version. 1.1")
+    time.sleep(1)
+
+    time_frame = input("Enter desired Time-Frame setting(1m, 5m, 15m, 30m, 60m, 1h, 1d, 1wk, 1mo):")
+    #moving_average_value = input("Enter desired Moving Average period setting:")
+
+    print(f"Time-Frame setting: {time_frame}")
+    print(f"Moving Average period setting : {moving_average_value}")
+    time.sleep(1)
+    print(f"Ranking the top digital currencies ...")
+    time.sleep(1)
     # btc-usd
     if is_stronger('btc-usd'):
         btc_score = btc_score + 1
@@ -65,7 +82,22 @@ if __name__ == "__main__":
         ada_score = ada_score - 1
         eth_score = eth_score + 1
 
-    print("USD: " + str(usd_score))
+    # Assessing which asset is the strongest/weakest
+    each_asset_score_dictionary = {"USD": usd_score, "BTC": btc_score, "ETH": eth_score, "ADA": ada_score}
+    asset_to_buy = max(each_asset_score_dictionary, key=each_asset_score_dictionary.get)
+    asset_to_sell = min(each_asset_score_dictionary, key=each_asset_score_dictionary.get)
+
+    print(f"Relative strength scores are shown below: ")
+    print(f"USD: {usd_score}")
     print(f"BTC: {btc_score}")
     print(f"ETH: {eth_score}")
     print(f"ADA: {ada_score}")
+    #print(f"ADVICE: Buy {asset_to_buy} and Sell {asset_to_sell}")
+
+    # Sending the investment advice as an alert via email
+    print(f"Current investment advice is being sent to {alert_recipient} ... ")
+    alert_body = f"Hi Investor, /n based on a relative strength comparision using the {time_frame} Time-Frame and {moving_average_value} Moving Average; the strongest asset is {asset_to_buy} while the weakest asset is {asset_to_sell}, hence current market dynamics suggest a position to BUY {asset_to_buy} while selling {asset_to_sell}"
+    email = yagmail.SMTP("20086638@mail.wit.ie")
+    email.send(to=alert_recipient,subject="Relative Strength Measurement Tool - Investment Signal",
+    contents=alert_body)
+    print("Done !")
